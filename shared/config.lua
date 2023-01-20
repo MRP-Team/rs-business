@@ -6,8 +6,8 @@ Config.DebugPoly = true -- Debug Polyzones
 
 -- PROGRESSBAR CONFIGS --
 Config.Times = { -- Time to make items (Set in seconds)
-    Food = 5,
-    Drinks = 5,
+    Food = 30,
+    Drinks = 20,
     WashHands = 5
 }
 
@@ -18,16 +18,16 @@ Config.Minigame = {
 }
 
 -- BUSINESS CONFIGS --
-Config.Job = 'beanmachine' -- Name of the job in 'qb-core > shared > jobs.lua'
+Config.Job = 'burgershot' -- Name of the job in 'qb-core > shared > jobs.lua'
 Config.Business = {
-    Name = 'Bean Machine', -- Blip Name / Business Name
+    Name = 'Cholera Burger', -- Blip Name / Business Name
     AutoDuty = true, -- Players on/off duty auto changes when entering/leaving the polyzone
 
     -- Business Blip Info
     Blip = {
-        coords = vector3(119.42, -1037.94, 29.28),
-        sprite = 1,
-        color = 1,
+        coords = vector3(-1172.48, -876.67, 14.13),
+        sprite = 106,
+        color = 81,
         size = 0.5,
     },
 
@@ -35,13 +35,13 @@ Config.Business = {
     BusinessPoly = {
         Zones = {
             [1] = {
-                minZ = 28,
-                maxZ = 31,
+                minZ = 12,
+                maxZ = 16,
                 zone = {
-                    vector2(112.20778656006, -1045.7586669922),
-                    vector2(119.12358093262, -1026.5433349609),
-                    vector2(128.96510314941, -1029.9719238281),
-                    vector2(121.7850112915, -1049.6458740234)
+                    vector2(-1175.1796875, -861.07727050782),
+                    vector2(-1212.3972167968, -884.63653564454),
+                    vector2(-1193.38, -915.57),
+                    vector2(-1154.6486816406, -892.33306884766)
                 }
             }
         }
@@ -51,8 +51,8 @@ Config.Business = {
 Config.Locations = {
     ['Registers'] = { -- Cash Register Locations
         [1] = {
-            coords = vector3(120.76, -1040.11, 29.28),
-            heading = 340,
+            coords = vector3(-1193.64, -895.28, 14.0),
+            heading = 118.21,
             width = 0.5,
             length = 0.5,
             info = {
@@ -62,8 +62,19 @@ Config.Locations = {
             }
         },
         [2] = {
-            coords = vector3(122.02, -1036.51, 29.28),
-            heading = 340,
+            coords = vector3(-1194.92, -893.33, 14.0),
+            heading = 119.5,
+            width = 0.5,
+            length = 0.5,
+            info = {
+                label = 'Register',
+                icon = 'fas fa-dollar-sign',
+                event = 'jim-payments:client:Charge', -- Use your own payments event
+            }
+        },
+        [3] = {
+            coords = vector3(-1196.23, -891.4, 14.0),
+            heading = 116.68,
             width = 0.5,
             length = 0.5,
             info = {
@@ -75,8 +86,8 @@ Config.Locations = {
     },
     ['Duty'] = { -- On / Off Duty Locations
         [1] = {
-            coords = vector3(126.39, -1034.39, 29.28),
-            heading = 340,
+            coords = vector3(-1193.94, -898.43, 14.5),
+            heading = 205.33,
             width = 0.9,
             length = 0.5,
             info = {
@@ -87,10 +98,20 @@ Config.Locations = {
     },
     ['Stashes'] = { -- Stash Locations
         [1] = {
-            coords = vector3(120.54, -1043.94, 29.28),
-            heading = 340,
-            width = 0.8,
+            coords = vector3(-1204.1, -889.87, 14.0),
+            heading = 124.54,
+            width = 1.0,
             length = 1.0,
+            info = {
+                label = 'Stash',
+                icon = 'fas fa-box',
+            }
+        },
+        [2] = {
+            coords = vector3(-1205.48, -893.05, 14.0),
+            heading = 301.79,
+            width = 2.0,
+            length = 0.8,
             info = {
                 label = 'Stash',
                 icon = 'fas fa-box',
@@ -99,18 +120,8 @@ Config.Locations = {
     },
     ['Trays'] = { -- Locations for Trays (Give Food to Customers)
         [1] = {
-            coords = vector3(120.66, -1040.78, 29.28),
-            heading = 340,
-            width = 0.6,
-            length = 1,
-            info = {
-                label = 'Tray',
-                icon = 'fas fa-box',
-            }
-        },
-        [2] = {
-            coords = vector3(122.0, -1037.14, 29.28),
-            heading = 340,
+            coords = vector3(-1194.00, -894.58, 14.0),
+            heading = 124.99,
             width = 0.6,
             length = 1,
             info = {
@@ -121,32 +132,42 @@ Config.Locations = {
     },
     ['Sink'] = { -- Sink Locations
         [1] = {
-            coords = vector3(123.73, -1039.27, 29.28),
-            heading = 340,
+            coords = vector3(-1198.05, -903.16, 14.0),
+            heading = 31.14,
             width = 1.6,
             length = 1.0,
             info = {
                 label = 'Wash Hands',
                 icon = 'fas fa-soap',
             }
-        }
+        },
+        [2] = {
+            coords = vector3(-1196.77, -902.15, 14.0),
+            heading = 34.28,
+            width = 1.6,
+            length = 1.0,
+            info = {
+                label = 'Wash Hands',
+                icon = 'fas fa-soap',
+            }
+        },
     },
     ['Food'] = { -- Make Food Locations
         [1] = {
-            coords = vector3(121.53, -1038.43, 29.28),
-            heading = 339,
+            coords = vector3(-1200.52, -900.94, 14.0),
+            heading = 291.53,
             width = 1.6,
             length = 1,
             info = {
-                label = 'Bean Machine Food',
+                label = 'Prepare a Sandwish',
                 icon = 'fas fa-burger',
             }
         }
     },
     ['Drinks'] = { -- Make Drink Locations
         [1] = {
-            coords = vector3(126.08, -1036.56, 29.28),
-            heading = 249,
+            coords = vector3(-1199.92, -894.89, 14.0),
+            heading = 303.66,
             width = 0.8,
             length = 0.5,
             info = {
@@ -156,41 +177,41 @@ Config.Locations = {
         }
     },
     ['Coffee'] = { -- Make Coffee Locations
-        [1] = {
-            coords = vector3(122.84, -1041.62, 29.28),
-            heading = 251,
-            width = 0.5,
-            length = 1,
-            info = {
-                label = 'Coffee',
-                icon = 'fas fa-mug-hot',
-            }
-        }
+        -- [1] = {
+        --     coords = vector3(122.84, -1041.62, 29.28),
+        --     heading = 251,
+        --     width = 0.5,
+        --     length = 1,
+        --     info = {
+        --         label = 'Coffee',
+        --         icon = 'fas fa-mug-hot',
+        --     }
+        -- }
     },
     ['Alcohol'] = { -- Make Alcohol Locations
-        [1] = {
-            coords = vector3(0,0,0),
-            heading = 0,
-            width = 0,
-            length = 0,
-            info = {
-                label = 'Alcohol',
-                icon = 'fas fa-wine-glass',
-            }
-        }
+        -- [1] = {
+        --     coords = vector3(0,0,0),
+        --     heading = 0,
+        --     width = 0,
+        --     length = 0,
+        --     info = {
+        --         label = 'Alcohol',
+        --         icon = 'fas fa-wine-glass',
+        --     }
+        -- }
     },
 }
 
 -- STASH CONFIG --
 Config.Stashes = {
     MaxSlots = 10,
-    MaxWeight = 2000
+    MaxWeight = 200000
 }
 
 -- TRAY CONFIG --
 Config.Trays = {
     MaxSlots = 10,
-    MaxWeight = 2000
+    MaxWeight = 10000
 }
 
 -- FOOD CONFIG --
@@ -200,7 +221,7 @@ Config.Food = {
         CraftEmote = 'bbq', -- Emote used when making the item
         UseEmote = 'burger', -- Emote used when using the item
         UseTime = 5, -- How long you use the item for (set in seconds)
-        Hunger = 2, -- How much hunger it refills
+        Hunger = 20, -- How much hunger it refills
         Required = {
             [1] = {
                 item = 'water_bottle',
